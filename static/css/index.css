@@ -155,3 +155,11 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+.author-line {
+  display: flex;            /* Enables flex layout */
+  flex-wrap: wrap;          /* Allows wrapping if the row gets too long */
+  justify-content: center;  /* Centers all items horizontally */
+  gap: 1em;               /* Spacing between items */
+  margin-bottom: 0.5em;       /* Some bottom margin to separate rows */
+}
