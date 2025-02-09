@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="./static/css/index.css">
 
   <!-- Favicon (replace with your actual favicon path) -->
-  <link rel="icon" href="./static/images/favicon.ico">
+  <link rel="icon" href="./static/images/favicon.svg">
 
   <!-- JavaScript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -53,13 +53,24 @@
   </div>
   <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <!-- Home link (replace with your own if you like) -->
-      <a class="navbar-item" href="https://jun297.github.io/EgoSpeak/">
-        <span class="icon">
+      <a class="navbar-item" href="https://junhyeok.kim">
+      <span class="icon">
           <i class="fas fa-home"></i>
-        </span>
+      </span>
       </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://seungjuhan.me/normlens/">
+            NormLens
+          </a>
+        </div>
+      </div>
     </div>
+
   </div>
 </nav>
 <!-- /NAVIGATION BAR -->
@@ -72,36 +83,37 @@
         <div class="column has-text-centered">
 
           <!-- Project Title -->
-          <h1 class="title is-1 publication-title">EgoSpeak: Real-Time Speech Initiation in Egocentric Streaming Videos</h1>
+          <h1 class="title is-1 publication-title">EgoSpeak: Learning When to Speak <br/> for Egocentric Conversational Agents <br/> in the Wild
+          </h1>
 
           <!-- Authors -->
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Junhyeok Kim<sup>1</sup>,</span>
+            <span class="author-block"><a href="https://junhyeok.kim">Junhyeok Kim</a><sup>1</sup>,</span>
             <span class="author-block">Min Soo Kim<sup>1</sup>,</span>
-            <span class="author-block">Jiwan Chung<sup>1</sup>,</span>
+            <span class="author-block"><a href="https://jiwanchung.github.io/">Jiwan Chung</a><sup>1</sup>,</span>
             <span class="author-block">Jungbin Cho<sup>1</sup>,</span>
             <span class="author-block">Jisoo Kim<sup>1</sup>,</span>
             <span class="author-block">Sungwoong Kim<sup>1</sup>,</span>
             <span class="author-block">Gyeongbo Sim<sup>2</sup>,</span>
-            <span class="author-block">Youngjae Yu<sup>1</sup></span>
+            <span class="author-block"><a href="https://mirlab.yonsei.ac.kr/">Youngjae Yu</a><sup>1</sup></span>
           </div>
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>Yonsei University</span>
-            <span class="author-block"><sup>2</sup>NCSoft</span>
+            <span class="author-block"><sup>2</sup>Multimodal AI Lab., NC Research, NCSOFT Corporation</span>
           </div>
 
           <!-- Paper/Video/Code/Data Buttons (optional placeholders) -->
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link (Replace with your actual PDF link) -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="#" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
                 </a>
-              </span>
+              </span> -->
 
               <!-- arXiv Link (Replace if relevant) -->
               <span class="link-block">
@@ -109,11 +121,11 @@
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv</span>
+                  <span>Paper</span>
                 </a>
               </span>
 
-              <!-- Video Link -->
+              <!-- Video Link
               <span class="link-block">
                 <a href="#" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -121,7 +133,7 @@
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
 
               <!-- Code Link -->
               <span class="link-block">
@@ -159,10 +171,10 @@
   <div class="container is-max-desktop">
     <div class="hero-body has-text-centered">
       <!-- Replace 'teaser_figure.jpg' with your actual teaser figure file -->
-      <img src="./static/images/teaser_figure.jpg" alt="Teaser Figure" style="max-width: 100%;">
-      <h2 class="subtitle" style="margin-top: 1em;">
-        <i>EgoSpeak</i> focuses on real-time speech initiation in egocentric video settings.
-      </h2>
+      <img src="./static/images/egospeak_fig1.png" alt="Teaser Figure" style="max-width: 100%;">
+      <!-- <h2 class="subtitle" style="margin-top: 1em;">
+        <i>EgoSpeak</i>: Learning When to Speak for Egocentric Conversational Agents in the Wild
+      </h2> -->
     </div>
   </div>
 </section>
@@ -191,8 +203,7 @@
             YouTube, as a resource for large-scale pretraining. Experiments on EasyCom and Ego4D 
             demonstrate that EgoSpeak outperforms random and silence-based baselines in real time. 
             Our results also highlight the importance of multimodal input and context length in 
-            effectively deciding when to speak. Code and data are available at 
-            <a href="https://jun297.github.io/EgoSpeak/">website</a>.
+            effectively deciding when to speak.
           </p>
         </div>
       </div>
@@ -202,13 +213,12 @@
 <!-- /ABSTRACT SECTION -->
 
 <!-- (OPTIONAL) PROJECT VIDEO / DEMOS SECTION -->
-<section class="section">
+<!-- <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Project Video</h2>
         <div class="publication-video">
-          <!-- Replace the src with your YouTube or other video link -->
           <iframe 
             src="https://www.youtube.com/embed/XXXXXXX?rel=0&amp;showinfo=0"
             frameborder="0"
@@ -221,11 +231,11 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- /PROJECT VIDEO SECTION -->
 
 <!-- BIBTEX SECTION -->
-<section class="section" id="BibTeX">
+<!-- <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@misc{kim2025egospeak,
@@ -236,7 +246,7 @@
   howpublished = {\url{https://jun297.github.io/EgoSpeak/}},
 }</code></pre>
   </div>
-</section>
+</section> -->
 <!-- /BIBTEX SECTION -->
 
 <!-- FOOTER -->
