@@ -157,9 +157,9 @@ body {
 }
 
 .author-line {
-  display: flex;            /* Enables flex layout */
-  flex-wrap: wrap;          /* Allows wrapping if the row gets too long */
-  justify-content: center;  /* Centers all items horizontally */
-  gap: 1em;               /* Spacing between items */
-  margin-bottom: 0.5em;       /* Some bottom margin to separate rows */
+  display: flex;
+  justify-content: center;
+  gap: 1.0em;
+  margin-bottom: 0.5em;
+  /* etc. */
 }
