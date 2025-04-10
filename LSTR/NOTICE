@@ -1,0 +1,9 @@
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+
+This codebase is based on the following repository:
+https://github.com/amazon-science/long-short-term-transformer
+
+The codebase is modified from the original repository to fit the needs of the LSTR model.
+
+

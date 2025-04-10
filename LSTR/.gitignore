@@ -1,0 +1,35 @@
+*.zip
+backup/
+# *.out
+*-log
+temp/
+
+scripts/
+# Miscellaneous
+*.DS_Store
+*.swp
+*.pyc
+*.egg-info
+
+# PyTorch models
+*.pth
+checkpoints/
+
+# Dataset soft links
+data/THUMOS
+data/TVSeries
+data/HACS
+data/EasyCom
+data/EGO4D
+data/EGO4D
+
+# logs
+log_*
+wandb/
+*.egg-info
+slurm-*.out
+
+*.mp4
+
+wandb/
+git_diff/

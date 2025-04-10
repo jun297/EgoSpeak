@@ -1,0 +1,6 @@
+_legacy_/
+temp/
+visualization/
+backups/
+
+*.egg-info

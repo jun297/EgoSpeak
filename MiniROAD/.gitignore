@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# PyTorch models
+*.pth
+
+# Miscellaneous
+*.DS_Store
+*.swp
+*.pyc
+*.pkl
+
+*.out
+
+dataset/
+# Dataset soft links
+data/
+
+# Output files
+output/
+output_*/
+
+checkpoints/
+
+notebooks/
+wandb/
