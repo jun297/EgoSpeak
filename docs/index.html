@@ -1,275 +1,196 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="EgoSpeak: Real-Time Speech Initiation in Egocentric Streaming Videos.">
-  <meta name="keywords" content="EgoSpeak, speech initiation, egocentric video, conversation agent">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EgoSpeak Project Page</title>
+  <title>EgoSpeak: Learning When to Speak for Egocentric Conversational Agents in the Wild</title>
+  <meta name="description" content="EgoSpeak: real-time speech initiation prediction from first-person video. NAACL 2025 Findings.">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XGSCLPEVF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <meta property="og:title" content="EgoSpeak (NAACL 2025 Findings)">
+  <meta property="og:description" content="Real-time speech initiation prediction from first-person video.">
+  <meta property="og:image" content="https://jun297.github.io/EgoSpeak/assets/teaser.jpg">
+  <meta property="og:url" content="https://jun297.github.io/EgoSpeak/">
+  <meta name="twitter:card" content="summary_large_image">
 
-    gtag('config', 'G-9XGSCLPEVF');
-  </script>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  
-  <!-- Bulma and other CSS -->
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-
-  <!-- Favicon (replace with your actual favicon path) -->
-  <link rel="icon" href="./static/images/favicon.svg">
-
-  <!-- JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <main class="page">
 
-<!-- NAVIGATION BAR -->
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://junhyeok.kim">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
+    <header class="title-block">
+      <p class="venue">NAACL 2025 Findings</p>
+      <h1>EgoSpeak: Learning When to Speak<br class="title-br">for Egocentric Conversational Agents<br class="title-br">in the Wild</h1>
+      <p class="authors">
+        <a href="https://junhyeok.kim/">Junhyeok Kim</a><sup>♣</sup>&ensp;
+        Min Soo Kim<sup>♣</sup>&ensp;
+        <a href="https://jiwanchung.github.io/">Jiwan Chung</a><sup>♣</sup>&ensp;
+        Jungbin Cho<sup>♣</sup>
+        <br>
+        Jisoo Kim<sup>♣</sup>&ensp;
+        Sungwoong Kim<sup>♣</sup>&ensp;
+        Gyeongbo Sim<sup>♢</sup>&ensp;
+        <a href="https://mirlab.yonsei.ac.kr/">Youngjae Yu</a><sup>♣</sup>
+      </p>
+      <p class="affiliations">
+        <sup>♣</sup>Yonsei University &ensp;·&ensp; <sup>♢</sup>Multimodal AI Lab., NC Research, NCSOFT
+      </p>
+      <p class="links">
+        <a href="https://arxiv.org/abs/2502.14892">arXiv</a> ·
+        <a href="https://github.com/jun297/EgoSpeak">Code</a> ·
+        <a href="#bibtex">BibTeX</a>
+      </p>
+    </header>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://seungjuhan.me/normlens/">
-            NormLens
-          </a>
-        </div>
+    <section id="gist">
+      <p class="gist">A conversational agent has to know not just <em>what</em> to say, but <em>when</em> to say it. We propose <strong>EgoSpeak</strong>, a framework that decides when to speak from a first-person video stream by anticipating the camera wearer's next utterance, the way a real-world social robot would. EgoSpeak unifies four capabilities most prior work skips, egocentric viewpoint, RGB processing, online inference, and untrimmed video, and we evaluate it on EasyCom and Ego4D with optional pretraining on YT-Conversation, a 41-hour collection of in-the-wild YouTube dialogues. Even with a tight 200&thinsp;ms decision step, our predictive model nearly doubles the average precision of a silence-threshold baseline on both datasets.</p>
+    </section>
+
+    <figure class="teaser medium">
+      <img src="assets/teaser.jpg" alt="EgoSpeak teaser: a first-person camera view with an inset showing the model anticipating speech.">
+      <figcaption><strong>Anticipate, don't react.</strong> EgoSpeak runs frame-by-frame on the wearer's egocentric video and audio stream, predicting whether the wearer is about to speak so the agent can begin generating a response before the actual onset.</figcaption>
+    </figure>
+
+    <section id="stats">
+      <ul class="stats">
+        <li><span class="num">60.6%</span><span class="lbl">best mAP, EasyCom</span></li>
+        <li><span class="num">69.2%</span><span class="lbl">best mAP, Ego4D</span></li>
+        <li><span class="num">41&thinsp;h</span><span class="lbl">YT-Conversation pretraining</span></li>
+        <li><span class="num">13.9k</span><span class="lbl">FPS, RNN model on RTX 3090</span></li>
+      </ul>
+    </section>
+
+    <section id="compare">
+      <h2>What's missing in prior turn-taking work</h2>
+      <div class="table-wrap">
+        <table class="comparison">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Egocentric</th>
+              <th>RGB</th>
+              <th>Online</th>
+              <th>Untrimmed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Method">Skantze (2017)</td>
+              <td data-label="Egocentric">—</td>
+              <td data-label="RGB">—</td>
+              <td data-label="Online">✓</td>
+              <td data-label="Untrimmed">—</td>
+            </tr>
+            <tr>
+              <td data-label="Method">VAP / Ekstedt (2022)</td>
+              <td data-label="Egocentric">—</td>
+              <td data-label="RGB">—</td>
+              <td data-label="Online">✓</td>
+              <td data-label="Untrimmed">—</td>
+            </tr>
+            <tr>
+              <td data-label="Method">Kurata (2023)</td>
+              <td data-label="Egocentric">—</td>
+              <td data-label="RGB">✓</td>
+              <td data-label="Online">—</td>
+              <td data-label="Untrimmed">—</td>
+            </tr>
+            <tr>
+              <td data-label="Method">Fatan (2024)</td>
+              <td data-label="Egocentric">✓</td>
+              <td data-label="RGB">✓</td>
+              <td data-label="Online">—</td>
+              <td data-label="Untrimmed">—</td>
+            </tr>
+            <tr class="ours">
+              <td data-label="Method"><strong>EgoSpeak (Ours)</strong></td>
+              <td data-label="Egocentric"><strong>✓</strong></td>
+              <td data-label="RGB"><strong>✓</strong></td>
+              <td data-label="Online"><strong>✓</strong></td>
+              <td data-label="Untrimmed"><strong>✓</strong></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
+    </section>
 
-  </div>
-</nav>
-<!-- /NAVIGATION BAR -->
-
-<!-- HERO SECTION (Title & Authors) -->
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-
-          <!-- Project Title -->
-          <h1 class="title is-1 publication-title">
-            EgoSpeak: Learning When to Speak <br/>
-            for Egocentric Conversational Agents <br/>
-            in the Wild
-          </h1>
-
-          <!-- Authors -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://junhyeok.kim">Junhyeok Kim</a><sup>♣</sup>,
-            </span>
-            <span class="author-block">
-              Min Soo Kim<sup>♣</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://jiwanchung.github.io/">Jiwan Chung</a><sup>♣</sup>,
-            </span>
-            <span class="author-block">
-              Jungbin Cho<sup>♣</sup>,
-            </span>
-            <span class="author-block">
-              Jisoo Kim<sup>♣</sup>,
-            </span>
-            <span class="author-block">
-              Sungwoong Kim<sup>♣</sup>,
-            </span>
-            <span class="author-block">
-              Gyeongbo Sim<sup>♢</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://mirlab.yonsei.ac.kr/">Youngjae Yu</a><sup>♣</sup>
-            </span>
-          </div>
-
-          <!-- Affiliations -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>♣</sup> Yonsei University</span>,
-            <span class="author-block"><sup>♢</sup> Multimodal AI Lab., NC Research, NCSOFT Corporation</span>
-          </div>
-
-          <!-- Paper/Video/Code/Data Buttons -->
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- Example Paper Link -->
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2502.14892" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <!-- Code Link -->
-              <span class="link-block">
-                <a href="https://github.com/jun297/EgoSpeak" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code & Data</span>
-                </a>
-              </span>
-            </div>
-          </div>
-          <!-- /Paper/Video/Code/Data Buttons -->
-
-        </div>
+    <section id="standards">
+      <h2>Four capabilities for in-the-wild conversation</h2>
+      <p>Most existing turn-taking studies relax at least one of these. We argue all four are needed for a useful real-world agent.</p>
+      <div class="standards-box">
+        <p><span class="s">①</span> <strong>First-person view.</strong> The agent reasons from what it actually sees, not a third-person camera.</p>
+        <p><span class="s">②</span> <strong>RGB processing.</strong> Gaze, body language, and scene context are visible cues for turn boundaries.</p>
+        <p><span class="s">③</span> <strong>Online inference.</strong> A decision is emitted every 200&thinsp;ms with no future lookahead.</p>
+        <p><span class="s">④</span> <strong>Untrimmed video.</strong> Long stretches of silence and sporadic exchanges are kept intact.</p>
       </div>
-    </div>
-  </div>
-</section>
-<!-- /HERO SECTION -->
+    </section>
 
+    <section id="pipeline">
+      <h2>Anticipate the wearer's next utterance</h2>
+      <p>At each timestep, EgoSpeak ingests RGB and audio features extracted at 5&thinsp;FPS, encodes a temporal window with a Transformer / GRU / Mamba backbone, and emits a per-frame distribution over three classes: <em>background</em>, <em>target speaker</em>, and <em>other speaker</em>. With anticipation length α = 10 timesteps, the model commits to speaking up to 2&thinsp;s before the wearer's actual onset, giving downstream LLMs the head start they need for natural turn-taking.</p>
+      <figure class="wide">
+        <img src="assets/pipeline.jpg" alt="EgoSpeak framework: per-frame video and audio features feed into a temporal encoder that predicts speak probabilities up to 2 seconds ahead.">
+        <figcaption><strong>Real-time pipeline.</strong> A streaming temporal encoder (long-term + short-term memory) reads continuous RGB+audio features and outputs anticipated speak probabilities for each future timestep up to 2&thinsp;s.</figcaption>
+      </figure>
+    </section>
 
-<!-- TEASER FIGURE -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body has-text-centered">
-      <!-- Replace 'teaser_figure.jpg' with your actual teaser figure file -->
-      <img src="./static/images/egospeak_fig1.png" alt="Teaser Figure" style="max-width: 100%;">
-      <h2 class="subtitle" style="margin-top: 1em;">
-        TL;DR: We introduce 
-        <span style="font-variant: small-caps;">EgoSpeak</span>,
-        a novel framework for predicting speech initiation in in-the-wild egocentric video streams for real-world conversational agents.
+    <section id="labeling">
+      <h2>Frame-level labels from transcript timestamps</h2>
+      <p>Per-frame speech labels are expensive to annotate by hand. We convert each EasyCom and Ego4D transcript into a one-hot timeline at 200&thinsp;ms resolution: <em>target</em> when the camera wearer is speaking, <em>other</em> for any other voice, <em>background</em> for silence.</p>
+      <figure class="medium">
+        <img src="assets/labeling.png" alt="Diagram showing how transcripts with start and end timestamps are converted into per-frame one-hot labels.">
+        <figcaption><strong>Transcript → per-frame labels.</strong> Spoken segments map to dense one-hot timelines used for both training and evaluation.</figcaption>
+      </figure>
+    </section>
 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- /TEASER FIGURE -->
+    <section id="distribution">
+      <h2>YT-Conversation: in-the-wild pretraining</h2>
+      <p>EasyCom and Ego4D are small for a model that has to learn turn-taking. We curate <strong>YT-Conversation</strong>, 414 YouTube videos spanning 41 hours of podcasts, interviews, and casual dialogues, then use Pyannote voice-activity detection to generate pseudo speech / no-speech labels at our 200&thinsp;ms resolution for large-scale pretraining.</p>
+      <figure class="wide">
+        <img src="assets/yt_samples.jpg" alt="3x3 grid of frames sampled from YT-Conversation showing different conversational scenarios.">
+        <figcaption><strong>Diverse conversational formats.</strong> Sample frames from YT-Conversation: podcasts, interviews, and informal multi-party dialogues.</figcaption>
+      </figure>
+      <figure class="medium">
+        <img src="assets/distribution.png" alt="Histogram of video durations in YT-Conversation, with most clips between 1 and 30 minutes and a tail past 900 seconds.">
+        <figcaption><strong>Long, untrimmed clips.</strong> Durations span 1 to 60&thinsp;min; the online formulation lets us train on full conversations rather than trimmed snippets.</figcaption>
+      </figure>
+    </section>
 
-<!-- ABSTRACT SECTION -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Predicting when to initiate speech in real-world environments remains a fundamental 
-            challenge for conversational agents. We introduce <b>EgoSpeak</b>, a novel framework 
-            for real-time speech initiation prediction in egocentric streaming video. By modeling 
-            the conversation from the speaker’s first-person viewpoint, EgoSpeak is tailored for 
-            human-like interactions in which a conversational agent must continuously observe its 
-            environment and dynamically decide when to talk.
-          </p>
-          <p>
-            Our approach bridges the gap between simplified experimental setups and complex natural 
-            conversations by integrating four key capabilities: (1) first-person perspective, 
-            (2) RGB processing, (3) online processing, and (4) untrimmed video processing. We also 
-            present YT-Conversation, a diverse collection of in-the-wild conversational videos from 
-            YouTube, as a resource for large-scale pretraining. Experiments on EasyCom and Ego4D 
-            demonstrate that EgoSpeak outperforms random and silence-based baselines in real time. 
-            Our results also highlight the importance of multimodal input and context length in 
-            effectively deciding when to speak.
-          </p>
-        </div>
+    <section id="example">
+      <h2>What the model actually does, frame by frame</h2>
+      <figure class="wide">
+        <img src="assets/qualitative.jpg" alt="Per-frame prediction trace for an EasyCom clip comparing RGB-only, audio-only, and audio+visual variants.">
+        <figcaption><strong>Audio + visual cleanly separates target from other.</strong> RGB-only struggles to mark speaking vs. non-speaking; audio-only confuses the target speaker with other voices; the multimodal model resolves both.</figcaption>
+      </figure>
+    </section>
+
+    <section id="findings">
+      <h2>What we found</h2>
+      <div class="findings-box">
+        <p><strong>① Multimodal beats unimodal, mostly on EasyCom.</strong> Transformer A+V reaches 58.7% mAP on EasyCom vs. 56.9% audio-only and 51.0% visual-only. On Ego4D the gap narrows: audio alone already carries most of the signal.</p>
+        <p><strong>② Optical flow is a free win.</strong> Adding TV-L1 flow as a third modality consistently improves every backbone on EasyCom, suggesting motion cues complement static visual features for predicting speech onsets.</p>
+        <p><strong>③ Long context helps; long short-term context hurts.</strong> Growing the long-term window monotonically improves the Transformer, but enlarging the short-term window degrades it, evidence that recent frames carry the most predictive signal and extra recent context is mostly noise.</p>
       </div>
-    </div>
-  </div>
-</section>
-<!-- /ABSTRACT SECTION -->
+      <p class="takeaway">Predicting speech onsets frame-by-frame outperforms threshold-based silence detection by 25 to 40 AP points on both datasets, even with a 200&thinsp;ms decision step.</p>
+    </section>
 
-<!-- (OPTIONAL) PROJECT VIDEO / DEMOS SECTION -->
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Project Video</h2>
-        <div class="publication-video">
-          <iframe 
-            src="https://www.youtube.com/embed/XXXXXXX?rel=0&amp;showinfo=0"
-            frameborder="0"
-            width="560"
-            height="315"
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- /PROJECT VIDEO SECTION -->
-
-<!-- BIBTEX SECTION -->
-<!-- <section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@misc{kim2025egospeak,
-  author = {Kim, Junhyeok and Kim, Min Soo and Chung, Jiwan and Cho, Jungbin and
-            Kim, Jisoo and Kim, Sungwoong and Sim, Gyeongbo and Yu, Youngjae},
-  title  = {EgoSpeak: Real-Time Speech Initiation in Egocentric Streaming Videos},
-  year   = {2025},
-  howpublished = {\url{https://jun297.github.io/EgoSpeak/}},
+    <section id="bibtex">
+      <h2>BibTeX</h2>
+      <pre><code>@inproceedings{kim2025egospeak,
+    title     = {EgoSpeak: Learning When to Speak for Egocentric Conversational Agents in the Wild},
+    author    = {Kim, Junhyeok and Kim, Min Soo and Chung, Jiwan and Cho, Jungbin and Kim, Jisoo and Kim, Sungwoong and Sim, Gyeongbo and Yu, Youngjae},
+    booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},
+    year      = {2025}
 }</code></pre>
-  </div>
-</section> -->
-<!-- /BIBTEX SECTION -->
+    </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <!-- Example icon links (GitHub, PDF) — remove if not needed -->
-      <a class="icon-link" href="#" title="PDF">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/jun297" title="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website template is adapted from the Nerfies project page. It is licensed under a 
-            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-              Creative Commons Attribution-ShareAlike 4.0 International License
-            </a>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- /FOOTER -->
+    <footer>
+      <p>Project page source on <a href="https://github.com/jun297/EgoSpeak">GitHub</a>. Template: <a href="https://github.com/jun297/GuideDog/tree/gh-pages">paper-project-page</a>.</p>
+    </footer>
 
+  </main>
 </body>
 </html>
