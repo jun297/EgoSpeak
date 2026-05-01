@@ -57,6 +57,21 @@ h1 {
   margin: 0 0 0.6rem;
 }
 
+/* Title can break out of the text column so long lines don't wrap awkwardly. */
+.title-block h1 {
+  max-width: 860px;
+  width: calc(100vw - 2.5rem);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+@media (max-width: 860px) {
+  .title-block h1 {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+}
+
 h2 {
   font-size: 1.22rem;
   font-weight: 600;
