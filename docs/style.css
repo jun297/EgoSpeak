@@ -283,6 +283,18 @@ table.comparison tr.ours td {
   border-bottom-color: color-mix(in srgb, var(--link) 35%, var(--rule));
 }
 
+/* capability marks: filled = supported, hollow = missing */
+.cap-yes {
+  color: var(--link);
+  font-size: 1.05em;
+  line-height: 1;
+}
+.cap-no {
+  color: #c8c5be;
+  font-size: 1.05em;
+  line-height: 1;
+}
+
 /* card layout below tablet — each row becomes a stacked block */
 @media (max-width: 640px) {
   table.comparison,
