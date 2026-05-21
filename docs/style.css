@@ -57,6 +57,10 @@ h1 {
   margin: 0 0 0.6rem;
 }
 
+/* title-sp: hidden on desktop (the <br class="title-br"> handles the line break);
+   becomes a space on mobile when .title-br is hidden, so words don't glue together */
+.title-sp { display: none; }
+
 /* Title can break out of the text column so long lines don't wrap awkwardly. */
 .title-block h1 {
   max-width: 860px;
@@ -440,6 +444,7 @@ footer p {
   }
   /* on mobile, let the title wrap naturally */
   .title-br { display: none; }
+  .title-sp { display: inline; }
   h2 {
     font-size: 1.1rem;
     margin-top: 2.2rem;
