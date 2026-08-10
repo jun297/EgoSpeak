@@ -36,6 +36,7 @@
   --ink: #201D28;
   --muted: #6E6A77;
   --line: #E5E2DB;
+  --line-strong: #8A8494;  /* 3.43:1 on --bg, WCAG 1.4.11 */
 
   --speak-ink: #B45309;   /* amber, text-safe   */
   --speak-fill: #F5A83C;  /* amber, fills       */
@@ -62,6 +63,7 @@
     --ink: #ECEAF1;
     --muted: #9B97A5;
     --line: #322E3B;
+    --line-strong: #6E6A77;  /* 3.47:1 on dark --bg */
 
     --speak-ink: #F2A64A;
     --speak-fill: #E8942C;
@@ -207,7 +209,7 @@ h1 .t-speak { color: var(--speak-ink); }
   font-family: var(--mono);
   font-size: .85rem;
   padding: .5em 1.1em;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-radius: 7px;
   color: var(--ink);
   text-decoration: none;
@@ -531,7 +533,13 @@ thead th { border-bottom: 1px solid var(--line); }
 tbody tr + tr td { border-top: 1px solid color-mix(in srgb, var(--line) 55%, transparent); }
 tbody tr.group-start td { border-top: 1px solid var(--line); }
 td.best { color: var(--speak-ink); font-weight: 700; }
-td.model { color: var(--muted); font-size: .8rem; }
+.model {
+  color: var(--muted);
+  font-size: .8rem;
+  font-weight: 400;
+  text-align: left;
+  vertical-align: top;
+}
 .se { color: var(--muted); font-size: .78em; }
 
 /* small tables inside duo cards */
@@ -560,7 +568,7 @@ td.model { color: var(--muted); font-size: .8rem; }
   font-family: var(--mono);
   font-size: .75rem;
   padding: .4em .9em;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-radius: 6px;
   background: var(--bg);
   color: var(--ink);
@@ -582,3 +590,9 @@ footer {
 footer .foot-line { margin: 0 0 .4rem; }
 footer a { color: var(--muted); }
 footer a:hover { color: var(--speak-ink); }
+
+/* With JS, labels hold a constant on-screen size across every viewport
+   instead of stepping (and briefly shrinking) at each breakpoint above.
+   Without JS the media queries above still apply. */
+.js-scale .svg-label { font-size: calc(13px / var(--svg-scale)); }
+.js-scale .svg-label-strong { font-size: calc(15px / var(--svg-scale)); }

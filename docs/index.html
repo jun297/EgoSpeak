@@ -205,18 +205,18 @@
             <tr><th class="tl">Model</th><th class="tl">Modality</th><th>EasyCom</th><th>Ego4D</th></tr>
           </thead>
           <tbody>
-            <tr class="group-start"><td class="model">Transformer</td><td class="tl">A</td><td>56.9 <span class="se">± 0.05</span></td><td class="best">69.2 <span class="se">± 0.03</span></td></tr>
-            <tr><td></td><td class="tl">V</td><td>51.0 <span class="se">± 0.08</span></td><td>58.0 <span class="se">± 0.27</span></td></tr>
-            <tr><td></td><td class="tl">A+V</td><td>58.7 <span class="se">± 0.13</span></td><td>69.0 <span class="se">± 0.24</span></td></tr>
-            <tr><td></td><td class="tl">A+V<sup>P</sup></td><td>58.5 <span class="se">± 0.26</span></td><td>68.9 <span class="se">± 0.18</span></td></tr>
-            <tr class="group-start"><td class="model">GRU</td><td class="tl">A</td><td>57.0 <span class="se">± 0.30</span></td><td class="best">69.2 <span class="se">± 0.25</span></td></tr>
-            <tr><td></td><td class="tl">V</td><td>51.7 <span class="se">± 0.29</span></td><td>57.9 <span class="se">± 0.61</span></td></tr>
-            <tr><td></td><td class="tl">A+V</td><td class="best">60.6 <span class="se">± 0.17</span></td><td>68.2 <span class="se">± 0.42</span></td></tr>
-            <tr><td></td><td class="tl">A+V<sup>P</sup></td><td>57.0 <span class="se">± 0.29</span></td><td>68.3 <span class="se">± 0.18</span></td></tr>
-            <tr class="group-start"><td class="model">Mamba</td><td class="tl">A</td><td>55.4 <span class="se">± 0.62</span></td><td>67.9 <span class="se">± 0.37</span></td></tr>
-            <tr><td></td><td class="tl">V</td><td>50.9 <span class="se">± 0.21</span></td><td>57.7 <span class="se">± 0.28</span></td></tr>
-            <tr><td></td><td class="tl">A+V</td><td>57.4 <span class="se">± 0.26</span></td><td>67.5 <span class="se">± 0.18</span></td></tr>
-            <tr><td></td><td class="tl">A+V<sup>P</sup></td><td>55.8 <span class="se">± 0.43</span></td><td>65.8 <span class="se">± 0.23</span></td></tr>
+            <tr class="group-start"><th class="model" scope="rowgroup" rowspan="4">Transformer</th><td class="tl">A</td><td>56.9 <span class="se">± 0.05</span></td><td class="best">69.2 <span class="se">± 0.03</span></td></tr>
+            <tr><td class="tl">V</td><td>51.0 <span class="se">± 0.08</span></td><td>58.0 <span class="se">± 0.27</span></td></tr>
+            <tr><td class="tl">A+V</td><td>58.7 <span class="se">± 0.13</span></td><td>69.0 <span class="se">± 0.24</span></td></tr>
+            <tr><td class="tl">A+V<sup>P</sup></td><td>58.5 <span class="se">± 0.26</span></td><td>68.9 <span class="se">± 0.18</span></td></tr>
+            <tr class="group-start"><th class="model" scope="rowgroup" rowspan="4">GRU</th><td class="tl">A</td><td>57.0 <span class="se">± 0.30</span></td><td class="best">69.2 <span class="se">± 0.25</span></td></tr>
+            <tr><td class="tl">V</td><td>51.7 <span class="se">± 0.29</span></td><td>57.9 <span class="se">± 0.61</span></td></tr>
+            <tr><td class="tl">A+V</td><td class="best">60.6 <span class="se">± 0.17</span></td><td>68.2 <span class="se">± 0.42</span></td></tr>
+            <tr><td class="tl">A+V<sup>P</sup></td><td>57.0 <span class="se">± 0.29</span></td><td>68.3 <span class="se">± 0.18</span></td></tr>
+            <tr class="group-start"><th class="model" scope="rowgroup" rowspan="4">Mamba</th><td class="tl">A</td><td>55.4 <span class="se">± 0.62</span></td><td>67.9 <span class="se">± 0.37</span></td></tr>
+            <tr><td class="tl">V</td><td>50.9 <span class="se">± 0.21</span></td><td>57.7 <span class="se">± 0.28</span></td></tr>
+            <tr><td class="tl">A+V</td><td>57.4 <span class="se">± 0.26</span></td><td>67.5 <span class="se">± 0.18</span></td></tr>
+            <tr><td class="tl">A+V<sup>P</sup></td><td>55.8 <span class="se">± 0.43</span></td><td>65.8 <span class="se">± 0.23</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -252,15 +252,15 @@
               <caption>EasyCom, average mAP with the gain from adding optical flow (F) in parentheses.</caption>
               <thead><tr><th class="tl">Model</th><th class="tl">Modality</th><th>Avg. mAP</th></tr></thead>
               <tbody>
-                <tr class="group-start"><td class="model">Transformer</td><td class="tl">A (+F)</td><td>57.0 <span class="se">(+8.0)</span></td></tr>
-                <tr><td></td><td class="tl">V (+F)</td><td>51.2 <span class="se">(+6.4)</span></td></tr>
-                <tr><td></td><td class="tl">A+V (+F)</td><td class="best">58.8 <span class="se">(+9.6)</span></td></tr>
-                <tr class="group-start"><td class="model">GRU</td><td class="tl">A (+F)</td><td>57.1 <span class="se">(+3.9)</span></td></tr>
-                <tr><td></td><td class="tl">V (+F)</td><td>51.2 <span class="se">(+4.2)</span></td></tr>
-                <tr><td></td><td class="tl">A+V (+F)</td><td>61.2 <span class="se">(+0.9)</span></td></tr>
-                <tr class="group-start"><td class="model">Mamba</td><td class="tl">A (+F)</td><td>55.6 <span class="se">(+2.6)</span></td></tr>
-                <tr><td></td><td class="tl">V (+F)</td><td>51.3 <span class="se">(+3.9)</span></td></tr>
-                <tr><td></td><td class="tl">A+V (+F)</td><td>57.6 <span class="se">(+2.7)</span></td></tr>
+                <tr class="group-start"><th class="model" scope="rowgroup" rowspan="3">Transformer</th><td class="tl">A (+F)</td><td>57.0 <span class="se">(+8.0)</span></td></tr>
+                <tr><td class="tl">V (+F)</td><td>51.2 <span class="se">(+6.4)</span></td></tr>
+                <tr><td class="tl">A+V (+F)</td><td class="best">58.8 <span class="se">(+9.6)</span></td></tr>
+                <tr class="group-start"><th class="model" scope="rowgroup" rowspan="3">GRU</th><td class="tl">A (+F)</td><td>57.1 <span class="se">(+3.9)</span></td></tr>
+                <tr><td class="tl">V (+F)</td><td>51.2 <span class="se">(+4.2)</span></td></tr>
+                <tr><td class="tl">A+V (+F)</td><td>61.2 <span class="se">(+0.9)</span></td></tr>
+                <tr class="group-start"><th class="model" scope="rowgroup" rowspan="3">Mamba</th><td class="tl">A (+F)</td><td>55.6 <span class="se">(+2.6)</span></td></tr>
+                <tr><td class="tl">V (+F)</td><td>51.3 <span class="se">(+3.9)</span></td></tr>
+                <tr><td class="tl">A+V (+F)</td><td>57.6 <span class="se">(+2.7)</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -321,6 +321,15 @@
 (function () {
   var root = document.documentElement;
   var zones = ['task', 'results', 'bibtex'];
+  // The hero SVG scales with the viewport, so text sized in viewBox units
+  // shrinks with it. Publish the live scale so labels can hold a constant
+  // on-screen size instead of stepping at breakpoints.
+  var svg = document.querySelector('.stream svg');
+  function labelScale() {
+    if (!svg) return;
+    root.style.setProperty('--svg-scale', (svg.getBoundingClientRect().width / 1000).toFixed(4));
+    root.classList.add('js-scale');
+  }
   function layout() {
     var win = window.innerHeight;
     var range = Math.max(root.scrollHeight - win, 1);
@@ -342,10 +351,11 @@
     ticking = true;
     requestAnimationFrame(function () { progress(); ticking = false; });
   }, { passive: true });
-  window.addEventListener('resize', function () { layout(); progress(); });
-  window.addEventListener('load', function () { layout(); progress(); });
+  window.addEventListener('resize', function () { layout(); progress(); labelScale(); });
+  window.addEventListener('load', function () { layout(); progress(); labelScale(); });
   layout();
   progress();
+  labelScale();
 })();
 
 document.querySelectorAll('.copy-btn').forEach(function (btn) {
