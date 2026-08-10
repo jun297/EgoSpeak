@@ -1,197 +1,363 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EgoSpeak: Learning When to Speak for Egocentric Conversational Agents in the Wild</title>
-  <meta name="description" content="EgoSpeak: real-time speech initiation prediction from first-person video. NAACL 2025 Findings.">
-
-  <meta property="og:title" content="EgoSpeak (NAACL 2025 Findings)">
-  <meta property="og:description" content="Real-time speech initiation prediction from first-person video.">
-  <meta property="og:image" content="https://jun297.github.io/EgoSpeak/assets/teaser.jpg">
-  <meta property="og:url" content="https://jun297.github.io/EgoSpeak/">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EgoSpeak: Learning When to Speak for Egocentric Conversational Agents in the Wild</title>
+<meta name="description" content="EgoSpeak (NAACL 2025 Findings) predicts when a conversational agent should start speaking, in real time, from an untrimmed egocentric video stream — with the YT-Conversation pretraining dataset.">
+<meta property="og:title" content="EgoSpeak: Learning When to Speak for Egocentric Conversational Agents in the Wild">
+<meta property="og:description" content="Real-time speech initiation prediction from egocentric streaming video. NAACL 2025 Findings.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='12' width='7' height='8' rx='2' fill='%23C9C6CF'/%3E%3Crect x='11' y='10' width='9' height='12' rx='2' fill='%238F86EE'/%3E%3Crect x='22' y='8' width='8' height='16' rx='2' fill='%23F5A83C'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="page">
 
-    <header class="title-block">
-      <p class="venue">NAACL 2025 Findings</p>
-      <h1>EgoSpeak:<span class="title-sp">&nbsp;</span><br class="title-br">Learning When to Speak<span class="title-sp">&nbsp;</span><br class="title-br">for Egocentric Conversational Agents in the Wild</h1>
-      <p class="authors">
-        <a href="https://junhyeok.kim/">Junhyeok Kim</a><sup>♣</sup>&ensp;
-        Min Soo Kim<sup>♣</sup>&ensp;
-        <a href="https://jiwanchung.github.io/">Jiwan Chung</a><sup>♣</sup>&ensp;
-        Jungbin Cho<sup>♣</sup>
-        <br>
-        Jisoo Kim<sup>♣</sup>&ensp;
-        Sungwoong Kim<sup>♣</sup>&ensp;
-        Gyeongbo Sim<sup>♢</sup>&ensp;
-        <a href="https://mirlab.yonsei.ac.kr/">Youngjae Yu</a><sup>♣</sup>
-      </p>
-      <p class="affiliations">
-        <sup>♣</sup>Yonsei University &ensp;·&ensp; <sup>♢</sup>Multimodal AI Lab., NC Research, NCSOFT
-      </p>
-      <p class="links">
-        <a href="https://arxiv.org/pdf/2502.14892">PDF</a> ·
-        <a href="https://arxiv.org/abs/2502.14892">arXiv</a> ·
-        <a href="https://github.com/jun297/EgoSpeak">Code</a> ·
-        <a href="#bibtex">BibTeX</a>
-      </p>
-    </header>
+<div class="rail" aria-hidden="true"></div>
+<div class="rail-fill" aria-hidden="true"></div>
+<div class="rail-mark" aria-hidden="true"></div>
+<div class="rail-head" aria-hidden="true"></div>
 
-    <section id="gist">
-      <p class="gist">A conversational agent has to know not just <em>what</em> to say, but <em>when</em> to say it. We propose <strong>EgoSpeak</strong>, a framework that decides when to speak from a first-person video stream by anticipating the camera wearer's next utterance, the way a real-world social robot would. EgoSpeak unifies four capabilities most prior work skips, egocentric viewpoint, RGB processing, online inference, and untrimmed video, and we evaluate it on EasyCom and Ego4D with optional pretraining on YT-Conversation, a 41-hour collection of in-the-wild YouTube dialogues. Even with a tight 200&thinsp;ms decision step, our predictive model nearly doubles the average precision of a silence-threshold baseline on both datasets.</p>
-    </section>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><span class="venue">NAACL 2025 Findings</span></p>
+    <h1><span class="t-ego">Ego</span><span class="t-speak">Speak</span></h1>
+    <p class="subtitle">Learning <span class="hl">when to speak</span> for egocentric conversational agents in&nbsp;the&nbsp;wild</p>
+    <p class="authors">
+      <a href="https://junhyeok.kim/">Junhyeok&nbsp;Kim</a><sup>♣</sup> · Min&nbsp;Soo&nbsp;Kim<sup>♣</sup> · <a href="https://jiwanchung.github.io/">Jiwan&nbsp;Chung</a><sup>♣</sup> · Jungbin&nbsp;Cho<sup>♣</sup><span class="auth-dot"> ·</span><br class="auth-br">
+      Jisoo&nbsp;Kim<sup>♣</sup> · Sungwoong&nbsp;Kim<sup>♣</sup> · Gyeongbo&nbsp;Sim<sup>♦</sup> · <a href="https://mirlab.yonsei.ac.kr/">Youngjae&nbsp;Yu</a><sup>♣</sup>
+    </p>
+    <p class="affil"><sup>♣</sup> Yonsei University &nbsp;&nbsp; <sup>♦</sup> Multimodal AI Lab., NC Research, NCSOFT Corporation</p>
+    <nav class="links" aria-label="Paper resources">
+      <a class="btn btn-primary" href="https://arxiv.org/abs/2502.14892">arXiv</a>
+      <a class="btn" href="https://arxiv.org/pdf/2502.14892">PDF</a>
+      <a class="btn" href="https://github.com/jun297/EgoSpeak">Code</a>
+      <a class="btn" href="https://huggingface.co/datasets/kjunh/EgoSpeak">Dataset</a>
+      <a class="btn" href="#bibtex">BibTeX</a>
+    </nav>
+  </div>
 
-    <figure class="teaser medium">
-      <img src="assets/teaser.jpg" alt="EgoSpeak teaser: a first-person camera view with an inset showing the model anticipating speech.">
-      <figcaption><strong>Anticipate, don't react.</strong> EgoSpeak runs frame-by-frame on the wearer's egocentric video and audio stream, predicting whether the wearer is about to speak so the agent can begin generating a response before the actual onset.</figcaption>
+  <div class="wide">
+    <figure class="stream">
+      <svg viewBox="0 0 1000 360" role="img"
+           aria-label="An audio waveform runs above five consecutive egocentric video frames playing along a conversation timeline: gray silence, a violet segment where another person speaks, then an amber segment where the target speaker talks. Below, the model's speak probability rises above a dashed threshold shortly before the amber segment begins.">
+        <!-- audio track: the paper's method figure stacks audio over RGB over the
+             probability plot; this is a schematic envelope, not a recorded waveform -->
+        <g class="audio" aria-hidden="true">
+          <line class="wave-axis" x1="0" y1="30" x2="1000" y2="30"/>
+          <path class="wave w-silence" d="M0,29.4 L4,29.4 L8,29.4 L12,29.3 L16,28.3 L20,28.3 L24,29.0 L28,29.1 L32,29.2 L36,28.8 L40,28.8 L44,28.5 L48,29.0 L52,28.2 L56,28.6 L60,29.0 L64,29.3 L68,29.2 L72,29.3 L76,29.1 L80,28.4 L84,29.0 L88,28.6 L92,28.6 L96,28.4 L100,29.2 L104,29.2 L108,28.8 L112,29.2 L116,28.6 L120,28.8 L124,29.1 L128,28.2 L132,28.6 L136,29.4 L140,29.4 L144,29.4 L148,29.4 L150,29.4 L150,30.6 L148,30.6 L144,30.6 L140,30.6 L136,30.6 L132,31.4 L128,31.8 L124,30.9 L120,31.2 L116,31.4 L112,30.8 L108,31.2 L104,30.8 L100,30.8 L96,31.6 L92,31.4 L88,31.4 L84,31.0 L80,31.6 L76,30.9 L72,30.7 L68,30.8 L64,30.7 L60,31.0 L56,31.4 L52,31.8 L48,31.0 L44,31.5 L40,31.2 L36,31.2 L32,30.8 L28,30.9 L24,31.0 L20,31.7 L16,31.7 L12,30.7 L8,30.6 L4,30.6 L0,30.6 Z"/>
+          <path class="wave w-other" d="M150,29.4 L154,28.5 L158,27.6 L162,27.1 L166,24.2 L170,26.8 L174,24.5 L178,19.1 L182,17.6 L186,14.4 L190,16.6 L194,13.7 L198,21.9 L202,20.5 L206,23.8 L210,23.3 L214,19.4 L218,15.5 L222,19.8 L226,21.7 L230,15.2 L234,20.8 L238,20.5 L242,23.2 L246,19.6 L250,17.4 L254,13.9 L258,20.6 L262,16.9 L266,22.8 L270,20.9 L274,21.9 L278,22.8 L282,21.6 L286,18.7 L290,16.3 L294,17.1 L298,20.0 L302,15.9 L306,22.7 L310,23.0 L314,20.9 L318,17.1 L322,16.1 L326,15.8 L330,14.1 L334,20.1 L338,19.3 L342,22.7 L346,22.7 L350,19.8 L354,20.5 L358,20.9 L362,17.7 L366,17.8 L370,15.1 L374,21.7 L378,19.9 L382,25.0 L386,21.9 L390,19.4 L394,22.2 L398,19.6 L402,23.0 L406,27.0 L410,27.5 L414,28.9 L418,29.4 L420,29.4 L420,30.6 L418,30.6 L414,31.1 L410,32.5 L406,33.0 L402,37.0 L398,40.4 L394,37.8 L390,40.6 L386,38.1 L382,35.0 L378,40.1 L374,38.3 L370,44.9 L366,42.2 L362,42.3 L358,39.1 L354,39.5 L350,40.2 L346,37.3 L342,37.3 L338,40.7 L334,39.9 L330,45.9 L326,44.2 L322,43.9 L318,42.9 L314,39.1 L310,37.0 L306,37.3 L302,44.1 L298,40.0 L294,42.9 L290,43.7 L286,41.3 L282,38.4 L278,37.2 L274,38.1 L270,39.1 L266,37.2 L262,43.1 L258,39.4 L254,46.1 L250,42.6 L246,40.4 L242,36.8 L238,39.5 L234,39.2 L230,44.8 L226,38.3 L222,40.2 L218,44.5 L214,40.6 L210,36.7 L206,36.2 L202,39.5 L198,38.1 L194,46.3 L190,43.4 L186,45.6 L182,42.4 L178,40.9 L174,35.5 L170,33.2 L166,35.8 L162,32.9 L158,32.4 L154,31.5 L150,30.6 Z"/>
+          <path class="wave w-silence" d="M420,29.4 L424,29.4 L428,28.1 L432,29.0 L436,28.5 L440,29.0 L444,28.7 L448,29.2 L452,28.9 L456,29.1 L460,28.9 L464,29.4 L465,29.4 L465,30.6 L464,30.6 L460,31.1 L456,30.9 L452,31.1 L448,30.8 L444,31.3 L440,31.0 L436,31.5 L432,31.0 L428,31.9 L424,30.6 L420,30.6 Z"/>
+          <path class="wave w-speak" d="M465,29.4 L469,28.4 L473,26.8 L477,26.1 L481,25.4 L485,24.9 L489,21.5 L493,20.5 L497,18.5 L501,16.5 L505,19.5 L509,19.0 L513,16.3 L517,24.1 L521,18.4 L525,20.7 L529,13.2 L533,20.9 L537,15.1 L541,18.7 L545,16.3 L549,22.2 L553,22.1 L557,20.8 L561,20.0 L565,19.9 L569,18.7 L573,18.5 L577,15.3 L581,20.2 L585,21.8 L589,18.4 L593,17.2 L597,14.0 L601,16.9 L605,16.6 L609,16.0 L613,16.1 L617,19.4 L621,24.7 L625,23.1 L629,16.0 L633,12.5 L637,20.7 L641,20.2 L645,15.6 L649,17.7 L653,20.9 L657,22.2 L661,18.5 L665,19.9 L669,20.5 L673,16.4 L677,17.6 L681,18.3 L685,18.8 L689,22.4 L693,22.3 L697,18.7 L701,15.7 L705,12.2 L709,16.8 L713,12.2 L717,22.4 L721,19.4 L725,21.1 L729,21.3 L733,20.8 L737,17.0 L741,15.2 L745,18.3 L749,17.6 L753,21.1 L757,21.6 L761,22.4 L765,24.3 L769,21.3 L773,23.7 L777,26.8 L781,27.8 L785,28.4 L789,29.4 L790,29.4 L790,30.6 L789,30.6 L785,31.6 L781,32.2 L777,33.2 L773,36.3 L769,38.7 L765,35.7 L761,37.6 L757,38.4 L753,38.9 L749,42.4 L745,41.7 L741,44.8 L737,43.0 L733,39.2 L729,38.7 L725,38.9 L721,40.6 L717,37.6 L713,47.8 L709,43.2 L705,47.8 L701,44.3 L697,41.3 L693,37.7 L689,37.6 L685,41.2 L681,41.7 L677,42.4 L673,43.6 L669,39.5 L665,40.1 L661,41.5 L657,37.8 L653,39.1 L649,42.3 L645,44.4 L641,39.8 L637,39.3 L633,47.5 L629,44.0 L625,36.9 L621,35.3 L617,40.6 L613,43.9 L609,44.0 L605,43.4 L601,43.1 L597,46.0 L593,42.8 L589,41.6 L585,38.2 L581,39.8 L577,44.7 L573,41.5 L569,41.3 L565,40.1 L561,40.0 L557,39.2 L553,37.9 L549,37.8 L545,43.7 L541,41.3 L537,44.9 L533,39.1 L529,46.8 L525,39.3 L521,41.6 L517,35.9 L513,43.7 L509,41.0 L505,40.5 L501,43.5 L497,41.5 L493,39.5 L489,38.5 L485,35.1 L481,34.6 L477,33.9 L473,33.2 L469,31.6 L465,30.6 Z"/>
+          <path class="wave w-silence" d="M790,29.4 L794,29.4 L798,29.4 L802,29.2 L806,29.1 L810,28.8 L814,29.0 L818,28.7 L822,29.2 L826,28.7 L830,29.0 L834,29.3 L838,28.4 L842,28.8 L846,28.3 L850,28.7 L854,29.1 L858,28.9 L862,29.1 L866,29.1 L870,29.2 L874,28.3 L878,28.6 L882,29.0 L886,28.6 L890,28.6 L894,28.6 L898,29.4 L902,28.8 L906,28.8 L910,28.8 L914,29.1 L918,28.1 L922,28.3 L926,29.1 L930,29.0 L934,29.4 L938,28.7 L942,28.8 L946,29.0 L950,28.5 L954,28.5 L958,29.0 L962,28.8 L966,29.2 L970,29.1 L974,28.9 L978,29.1 L982,28.7 L986,29.4 L990,29.4 L994,29.4 L998,29.4 L1000,29.4 L1000,30.6 L998,30.6 L994,30.6 L990,30.6 L986,30.6 L982,31.3 L978,30.9 L974,31.1 L970,30.9 L966,30.8 L962,31.2 L958,31.0 L954,31.5 L950,31.5 L946,31.0 L942,31.2 L938,31.3 L934,30.6 L930,31.0 L926,30.9 L922,31.7 L918,31.9 L914,30.9 L910,31.2 L906,31.2 L902,31.2 L898,30.6 L894,31.4 L890,31.4 L886,31.4 L882,31.0 L878,31.4 L874,31.7 L870,30.8 L866,30.9 L862,30.9 L858,31.1 L854,30.9 L850,31.3 L846,31.7 L842,31.2 L838,31.6 L834,30.7 L830,31.0 L826,31.3 L822,30.8 L818,31.3 L814,31.0 L810,31.2 L806,30.9 L802,30.8 L798,30.6 L794,30.6 L790,30.6 Z"/>
+        </g>
+
+        <!-- the stream itself: consecutive egocentric frames, lit as the playhead passes -->
+        <g class="filmstrip">
+          <image class="cell" style="--i:0" href="assets/frame-0.webp" x="0"   y="64" width="196" height="110" preserveAspectRatio="xMidYMid slice"/>
+          <image class="cell" style="--i:1" href="assets/frame-1.webp" x="201" y="64" width="196" height="110" preserveAspectRatio="xMidYMid slice"/>
+          <image class="cell" style="--i:2" href="assets/frame-2.webp" x="402" y="64" width="196" height="110" preserveAspectRatio="xMidYMid slice"/>
+          <image class="cell" style="--i:3" href="assets/frame-3.webp" x="603" y="64" width="196" height="110" preserveAspectRatio="xMidYMid slice"/>
+          <image class="cell" style="--i:4" href="assets/frame-4.webp" x="804" y="64" width="196" height="110" preserveAspectRatio="xMidYMid slice"/>
+        </g>
+
+        <g transform="translate(0,164)">
+        <!-- class segments of the untrimmed stream -->
+        <rect class="seg-silence" x="0"   y="22" width="150" height="36" rx="3"/>
+        <rect class="seg-other"   x="150" y="22" width="270" height="36" rx="3"/>
+        <rect class="seg-silence" x="420" y="22" width="45"  height="36" rx="3"/>
+        <rect class="seg-speak"   x="465" y="22" width="325" height="36" rx="3"/>
+        <rect class="seg-silence" x="790" y="22" width="210" height="36" rx="3"/>
+        <text class="svg-label lbl-min" x="75"  y="45" text-anchor="middle">no speech</text>
+        <text class="svg-label" x="285" y="45" text-anchor="middle" style="fill:#201D28">other speaking</text>
+        <text class="svg-label" x="627" y="45" text-anchor="middle" style="fill:#201D28">target speaking</text>
+
+        <!-- speak-probability plot -->
+        <line class="threshold" x1="0" y1="108" x2="1000" y2="108"/>
+        <text class="svg-label" x="994" y="101" text-anchor="end">speak threshold</text>
+
+        <path class="curve-other" d="M0,152 L30,148 L60,151 L90,146 L120,142 L150,120 L170,102 L190,92 L210,88 L230,92 L250,86 L270,90 L290,87 L310,91 L330,89 L350,94 L370,100 L390,110 L410,122 L430,134 L450,142 L470,148 L500,152 L550,150 L600,153 L650,151 L700,152 L750,151 L800,153 L850,152 L900,153 L950,152 L1000,153"/>
+        <path class="curve-speak draw" d="M0,156 L40,153 L80,157 L120,152 L160,155 L200,150 L240,154 L270,149 L300,153 L320,148 L340,148 L360,143 L380,136 L400,128 L420,119 L440,111 L452,106 L465,100 L480,94 L500,90 L520,88 L540,91 L560,87 L580,92 L600,88 L620,93 L640,89 L660,92 L680,88 L700,91 L720,89 L740,93 L760,90 L780,92 L800,102 L820,120 L840,138 L860,150 L880,155 L920,157 L960,154 L1000,156"/>
+
+        <circle class="cross-halo" cx="447" cy="108" r="9"/>
+        <circle class="cross-dot" cx="447" cy="108" r="4"/>
+        <text class="svg-label svg-label-strong" x="462" y="132">start speaking</text>
+
+        <!-- frame ticks: predictions every 0.2 s -->
+        <g class="tick">
+          <line x1="0" y1="168" x2="0" y2="172"/><line x1="25" y1="168" x2="25" y2="172"/><line x1="50" y1="168" x2="50" y2="172"/><line x1="75" y1="168" x2="75" y2="172"/><line x1="100" y1="168" x2="100" y2="172"/><line x1="125" y1="168" x2="125" y2="172"/><line x1="150" y1="168" x2="150" y2="172"/><line x1="175" y1="168" x2="175" y2="172"/><line x1="200" y1="168" x2="200" y2="172"/><line x1="225" y1="168" x2="225" y2="172"/><line x1="250" y1="168" x2="250" y2="172"/><line x1="275" y1="168" x2="275" y2="172"/><line x1="300" y1="168" x2="300" y2="172"/><line x1="325" y1="168" x2="325" y2="172"/><line x1="350" y1="168" x2="350" y2="172"/><line x1="375" y1="168" x2="375" y2="172"/><line x1="400" y1="168" x2="400" y2="172"/><line x1="425" y1="168" x2="425" y2="172"/><line x1="450" y1="168" x2="450" y2="172"/><line x1="475" y1="168" x2="475" y2="172"/><line x1="500" y1="168" x2="500" y2="172"/><line x1="525" y1="168" x2="525" y2="172"/><line x1="550" y1="168" x2="550" y2="172"/><line x1="575" y1="168" x2="575" y2="172"/><line x1="600" y1="168" x2="600" y2="172"/><line x1="625" y1="168" x2="625" y2="172"/><line x1="650" y1="168" x2="650" y2="172"/><line x1="675" y1="168" x2="675" y2="172"/><line x1="700" y1="168" x2="700" y2="172"/><line x1="725" y1="168" x2="725" y2="172"/><line x1="750" y1="168" x2="750" y2="172"/><line x1="775" y1="168" x2="775" y2="172"/><line x1="800" y1="168" x2="800" y2="172"/><line x1="825" y1="168" x2="825" y2="172"/><line x1="850" y1="168" x2="850" y2="172"/><line x1="875" y1="168" x2="875" y2="172"/><line x1="900" y1="168" x2="900" y2="172"/><line x1="925" y1="168" x2="925" y2="172"/><line x1="950" y1="168" x2="950" y2="172"/><line x1="975" y1="168" x2="975" y2="172"/><line x1="1000" y1="168" x2="1000" y2="172"/>
+        </g>
+        <text class="svg-label lbl-min" x="0" y="187">untrimmed egocentric stream</text>
+        <text class="svg-label lbl-min" x="1000" y="187" text-anchor="end">one prediction every 0.2 s</text>
+        </g>
+
+        <!-- sweeping playhead -->
+        <g class="playhead" aria-hidden="true">
+          <line x1="0" y1="7" x2="0" y2="336"/>
+          <path d="M-4,0 L4,0 L0,7 Z"/>
+        </g>
+      </svg>
+      <figcaption class="legend">
+        <span class="chip"><span class="swatch s-silence"></span>background · no speech</span>
+        <span class="chip"><span class="swatch s-other"></span>other person speaking</span>
+        <span class="chip"><span class="swatch s-speak"></span>target speaker speaking</span>
+      </figcaption>
+      <p class="stream-note">This page replays the episode above — silence first, listening through the task, method, and data, speaking when the results arrive. The bar at the top saturates only the past, the way an online model must.</p>
     </figure>
+  </div>
+</header>
 
-    <section id="stats">
-      <ul class="stats">
-        <li><span class="num">60.6%</span><span class="lbl">best mAP, EasyCom</span></li>
-        <li><span class="num">69.2%</span><span class="lbl">best mAP, Ego4D</span></li>
-        <li><span class="num">41&thinsp;h</span><span class="lbl">YT-Conversation pretraining</span></li>
-        <li><span class="num">13.9k</span><span class="lbl">FPS, RNN model on RTX 3090</span></li>
+<main>
+
+  <section id="overview">
+    <div class="wrap">
+      <p class="sec-eyebrow"><span class="swatch s-silence"></span>Overview</p>
+      <h2>Speaking is easy. Knowing when is not.</h2>
+      <p>A real-world conversational agent cannot wait for a tidy pause before it talks. Conversations in the wild overlap, stall, and restart; speaker roles blur. <strong>EgoSpeak</strong> predicts, at every frame of an egocentric video stream, whether the camera wearer is about to start speaking — treating the wearer's own speaking moments as free supervision for natural turn-taking.</p>
+      <p>The model watches exactly what the agent would see and hear, processes it causally in real time, and outputs a continuous speak probability that an agent can act on the moment it crosses a threshold.</p>
+      <ul class="caps">
+        <li><span class="cap-name">Egocentric</span><span class="cap-desc">first-person view — the stream is exactly what the agent perceives</span></li>
+        <li><span class="cap-name">RGB</span><span class="cap-desc">works from raw pixels when audio or nonverbal cues are unreliable</span></li>
+        <li><span class="cap-name">Online</span><span class="cap-desc">causal, real-time — only the past is visible at every step</span></li>
+        <li><span class="cap-name">Untrimmed</span><span class="cap-desc">long streams with silence and sporadic turns, not pre-cut clips</span></li>
       </ul>
-    </section>
+      <p class="muted">Prior utterance-initiation and turn-taking methods cover at most two of these four capabilities; EgoSpeak is built for all of them.</p>
+    </div>
+  </section>
 
-    <section id="compare">
-      <h2>What's missing in prior turn-taking work</h2>
-      <div class="table-wrap">
-        <table class="comparison">
+  <section id="task">
+    <div class="wrap">
+      <p class="sec-eyebrow"><span class="swatch s-other"></span>Task</p>
+      <h2>Predict the turn — don't detect the silence.</h2>
+      <p>Commercial dialogue systems typically speak after detecting a fixed silence interval, which leaves an agent roughly 200&nbsp;ms to respond. Psycholinguistics tells a different story: humans start preparing their response while the other person is still talking.</p>
+      <div class="stats">
+        <div class="stat"><span class="num">≈200 ms</span><span class="lbl">response window left by silence-threshold detection</span></div>
+        <div class="stat"><span class="num n-speak">600–1500 ms</span><span class="lbl">how far ahead humans actually plan their speech (Levinson &amp; Torreira)</span></div>
+        <div class="stat"><span class="num n-speak">up to 2 s</span><span class="lbl">how far ahead EgoSpeak anticipates speech initiation, in 0.2 s steps</span></div>
+      </div>
+      <p>EgoSpeak therefore frames the problem as <em>anticipation</em>: at each timestep it classifies the next 10 future steps (up to 2&nbsp;s) as <em>background</em>, <em>target speaker speaking</em>, or <em>other person speaking</em> — before the turn shift happens.</p>
+    </div>
+    <div class="wide">
+      <figure class="fig">
+        <div class="plate"><img src="assets/teaser.webp" width="1400" height="665" alt="Egocentric video frames along a timeline moving through no speech, another person speaking, and the camera wearer speaking, with an agent deciding 'I should speak now'."></div>
+        <figcaption><span class="fig-tag">teaser</span><span class="fig-text">EgoSpeak models the conversation from the camera wearer's viewpoint, mirroring how a real-world agent would perceive a dynamic, multi-speaker scene — and when it should jump in.</span></figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="plate"><img src="assets/labeling.png" width="1278" height="614" alt="A transcript with timestamps converted into a row of per-frame one-hot labels colored gray, amber, and violet."></div>
+        <figcaption><span class="fig-tag">labels</span><span class="fig-text">Transcript timestamps become per-frame one-hot labels — gray [1,0,0] background, amber [0,1,0] target speaker, violet [0,0,1] other speaker — so no manual frame-level annotation is needed.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="framework">
+    <div class="wrap">
+      <p class="sec-eyebrow"><span class="swatch s-other"></span>Framework</p>
+      <h2>One causal pass over an untrimmed stream.</h2>
+      <p>Video is downsampled to 20&nbsp;FPS and encoded at 5 predictions per second: RGB features from a Kinetics-400-pretrained ResNet-50, audio features from wav2vec2, concatenated per frame. On top, three online backbones are evaluated — a Transformer (LSTR), a GRU, and a Mamba model — trained with a cross-entropy objective, akin to next-token prediction in language modeling.</p>
+    </div>
+    <div class="wide">
+      <figure class="fig">
+        <div class="plate"><img src="assets/method.webp" width="1800" height="691" alt="Pipeline diagram: an audio waveform and RGB frames enter an online processing model, which outputs per-class probabilities and a speak-probability curve crossing a threshold labeled 'start speaking'."></div>
+        <figcaption><span class="fig-tag">method</span><span class="fig-text">At every step the online model classifies near-future frames as background, other person speaking, or target speaker speaking. An agent triggers speech once the speak probability crosses a threshold.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="dataset">
+    <div class="wrap">
+      <p class="sec-eyebrow"><span class="swatch s-other"></span>Dataset</p>
+      <h2>YT-Conversation: pretraining from the wild.</h2>
+      <p>Turn-taking corpora usually come from labs or video calls — expensive to annotate and far tamer than real conversation. YT-Conversation instead harvests podcasts, interviews, and casual face-to-face dialogues from YouTube, pseudo-labeled automatically with voice activity detection at 200&nbsp;ms resolution. Only YouTube IDs are released, so creators keep control of their content.</p>
+      <div class="stats">
+        <div class="stat"><span class="num n-speak">414</span><span class="lbl">in-the-wild conversational videos</span></div>
+        <div class="stat"><span class="num n-speak">41 h</span><span class="lbl">of footage, from clips 1 to 60 minutes long</span></div>
+        <div class="stat"><span class="num n-speak">0 h</span><span class="lbl">of manual annotation — per-frame labels come from VAD</span></div>
+      </div>
+    </div>
+    <div class="wide">
+      <figure class="fig">
+        <div class="plate"><img src="assets/ytconv.webp" width="1400" height="818" alt="A three-by-three grid of frames from YouTube conversations: podcast studios, interview sets, and living-room chats."></div>
+        <figcaption><span class="fig-tag">yt-conversation</span><span class="fig-text">Sample frames: podcasts, interviews, and informal dialogues spanning very different rooms, framings, and speaker counts. <a href="https://huggingface.co/datasets/kjunh/EgoSpeak">Available on Hugging Face</a>.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="wrap">
+      <p class="sec-eyebrow"><span class="swatch s-speak"></span>Results</p>
+      <h2>Anticipation beats waiting for silence.</h2>
+      <p>On two egocentric benchmarks — EasyCom (controlled, around-a-table) and Ego4D (in-the-wild, audio-visual diarization split) — EgoSpeak's predictive models roughly double the target-speaker average precision of a silence-based rule, even though the evaluation is deliberately biased in that rule's favor. The silence rule lands at random-baseline level.</p>
+      <div class="stats">
+        <div class="stat">
+          <span class="num"><span class="n-speak">52.7</span> <span class="vs">vs 26.6</span></span>
+          <span class="lbl">EasyCom target-speaker AP — Transformer (A+V) vs silence-based rule (random: 27.2)</span>
+        </div>
+        <div class="stat">
+          <span class="num"><span class="n-speak">66.8</span> <span class="vs">vs 27.7</span></span>
+          <span class="lbl">Ego4D target-speaker AP — Transformer (A+V) vs silence-based rule (random: 26.1)</span>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Average mAP (%) over the 0.2–2.0 s anticipation horizon, mean ± standard error over five seeds. <sup>P</sup> = pretrained on YT-Conversation. Anticipation decays gracefully with distance: the EasyCom Transformer (A+V), for example, goes from 73.8 mAP at 0.2 s to 53.0 at 2.0 s.</caption>
           <thead>
-            <tr>
-              <th>Method</th>
-              <th>Egocentric</th>
-              <th>RGB</th>
-              <th>Online</th>
-              <th>Untrimmed</th>
-            </tr>
+            <tr><th class="tl">Model</th><th class="tl">Modality</th><th>EasyCom</th><th>Ego4D</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <td data-label="Method">Skantze (2017)</td>
-              <td data-label="Egocentric"><span class="cap-no" aria-label="no">○</span></td>
-              <td data-label="RGB"><span class="cap-no" aria-label="no">○</span></td>
-              <td data-label="Online"><span class="cap-yes" aria-label="yes">●</span></td>
-              <td data-label="Untrimmed"><span class="cap-no" aria-label="no">○</span></td>
-            </tr>
-            <tr>
-              <td data-label="Method">VAP / Ekstedt (2022)</td>
-              <td data-label="Egocentric"><span class="cap-no" aria-label="no">○</span></td>
-              <td data-label="RGB"><span class="cap-no" aria-label="no">○</span></td>
-              <td data-label="Online"><span class="cap-yes" aria-label="yes">●</span></td>
-              <td data-label="Untrimmed"><span class="cap-no" aria-label="no">○</span></td>
-            </tr>
-            <tr>
-              <td data-label="Method">Kurata (2023)</td>
-              <td data-label="Egocentric"><span class="cap-no" aria-label="no">○</span></td>
-              <td data-label="RGB"><span class="cap-yes" aria-label="yes">●</span></td>
-              <td data-label="Online"><span class="cap-no" aria-label="no">○</span></td>
-              <td data-label="Untrimmed"><span class="cap-no" aria-label="no">○</span></td>
-            </tr>
-            <tr>
-              <td data-label="Method">Fatan (2024)</td>
-              <td data-label="Egocentric"><span class="cap-yes" aria-label="yes">●</span></td>
-              <td data-label="RGB"><span class="cap-yes" aria-label="yes">●</span></td>
-              <td data-label="Online"><span class="cap-no" aria-label="no">○</span></td>
-              <td data-label="Untrimmed"><span class="cap-no" aria-label="no">○</span></td>
-            </tr>
-            <tr class="ours">
-              <td data-label="Method"><strong>EgoSpeak (Ours)</strong></td>
-              <td data-label="Egocentric"><span class="cap-yes" aria-label="yes">●</span></td>
-              <td data-label="RGB"><span class="cap-yes" aria-label="yes">●</span></td>
-              <td data-label="Online"><span class="cap-yes" aria-label="yes">●</span></td>
-              <td data-label="Untrimmed"><span class="cap-yes" aria-label="yes">●</span></td>
-            </tr>
+            <tr class="group-start"><td class="model">Transformer</td><td class="tl">A</td><td>56.9 <span class="se">± 0.05</span></td><td class="best">69.2 <span class="se">± 0.03</span></td></tr>
+            <tr><td></td><td class="tl">V</td><td>51.0 <span class="se">± 0.08</span></td><td>58.0 <span class="se">± 0.27</span></td></tr>
+            <tr><td></td><td class="tl">A+V</td><td>58.7 <span class="se">± 0.13</span></td><td>69.0 <span class="se">± 0.24</span></td></tr>
+            <tr><td></td><td class="tl">A+V<sup>P</sup></td><td>58.5 <span class="se">± 0.26</span></td><td>68.9 <span class="se">± 0.18</span></td></tr>
+            <tr class="group-start"><td class="model">GRU</td><td class="tl">A</td><td>57.0 <span class="se">± 0.30</span></td><td class="best">69.2 <span class="se">± 0.25</span></td></tr>
+            <tr><td></td><td class="tl">V</td><td>51.7 <span class="se">± 0.29</span></td><td>57.9 <span class="se">± 0.61</span></td></tr>
+            <tr><td></td><td class="tl">A+V</td><td class="best">60.6 <span class="se">± 0.17</span></td><td>68.2 <span class="se">± 0.42</span></td></tr>
+            <tr><td></td><td class="tl">A+V<sup>P</sup></td><td>57.0 <span class="se">± 0.29</span></td><td>68.3 <span class="se">± 0.18</span></td></tr>
+            <tr class="group-start"><td class="model">Mamba</td><td class="tl">A</td><td>55.4 <span class="se">± 0.62</span></td><td>67.9 <span class="se">± 0.37</span></td></tr>
+            <tr><td></td><td class="tl">V</td><td>50.9 <span class="se">± 0.21</span></td><td>57.7 <span class="se">± 0.28</span></td></tr>
+            <tr><td></td><td class="tl">A+V</td><td>57.4 <span class="se">± 0.26</span></td><td>67.5 <span class="se">± 0.18</span></td></tr>
+            <tr><td></td><td class="tl">A+V<sup>P</sup></td><td>55.8 <span class="se">± 0.43</span></td><td>65.8 <span class="se">± 0.23</span></td></tr>
           </tbody>
         </table>
       </div>
-    </section>
+      <p>Audio+visual input wins on EasyCom (GRU reaches <strong>60.6 mAP</strong>); on the noisier Ego4D, audio alone is already strong at <strong>69.2 mAP</strong>. Vision-only models trail but stay clearly above chance — enough to matter when audio fails. YT-Conversation pretraining brings modest overall change, with its clearest gain on the <em>other person speaking</em> class (+0.7 AP on EasyCom, +1.5 on Ego4D).</p>
+    </div>
+    <div class="wide">
+      <figure class="fig">
+        <div class="plate"><img src="assets/qualitative.webp" width="1800" height="613" alt="Five egocentric frames above a plot of predicted speak scores; the audio-visual model's curve rises inside the wearer's speaking regions and stays low while another person speaks."></div>
+        <figcaption><span class="fig-tag">qualitative</span><span class="fig-text">Predicted speak scores on an EasyCom clip. The audio-only model (red) fires on <em>anyone's</em> speech; the audio-visual model (purple) rises mainly inside the wearer's own turns (amber regions) and stays low while others speak (violet region). RGB alone (blue) barely separates the two.</span></figcaption>
+      </figure>
+    </div>
+  </section>
 
-    <section id="standards">
-      <h2>Four capabilities for in-the-wild conversation</h2>
-      <p>Most existing turn-taking studies relax at least one of these. We argue all four are needed for a useful real-world agent.</p>
-      <div class="standards-box">
-        <p><span class="s">①</span> <strong>First-person view.</strong> The agent reasons from what it actually sees, not a third-person camera.</p>
-        <p><span class="s">②</span> <strong>RGB processing.</strong> Gaze, body language, and scene context are visible cues for turn boundaries.</p>
-        <p><span class="s">③</span> <strong>Online inference.</strong> A decision is emitted every 200&thinsp;ms with no future lookahead.</p>
-        <p><span class="s">④</span> <strong>Untrimmed video.</strong> Long stretches of silence and sporadic exchanges are kept intact.</p>
+  <section id="analysis">
+    <div class="wrap">
+      <p class="sec-eyebrow"><span class="swatch s-speak"></span>Analysis</p>
+      <h2>What the models tell us.</h2>
+    </div>
+    <div class="wide">
+      <div class="duo">
+        <figure class="fig">
+          <div class="plate"><img src="assets/context.png" width="1000" height="800" alt="Line chart of per-frame mAP versus long-term memory length for short-term windows of 16, 32, and 64 frames; the 16-frame curve is highest."></div>
+          <figcaption><span class="fig-tag">context length</span><span class="fig-text">More long-term memory steadily helps (up to 4096 frames), but growing the short-term window from 16 to 64 frames consistently <em>hurts</em> — models don't exploit short-term information well.</span></figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="plate"><img src="assets/attention.png" width="1600" height="800" alt="Plot of normalized attention weight versus distance from the prediction frame, collapsing to near zero within about ten frames."></div>
+          <figcaption><span class="fig-tag">attention</span><span class="fig-text">Encoder attention, averaged over the test set, collapses onto the most recent frames — utterance initiation is decided mostly from local context.</span></figcaption>
+        </figure>
+        <div class="mini">
+          <h3>Motion helps</h3>
+          <div class="table-scroll">
+            <table>
+              <caption>EasyCom, average mAP with the gain from adding optical flow (F) in parentheses.</caption>
+              <thead><tr><th class="tl">Model</th><th class="tl">Modality</th><th>Avg. mAP</th></tr></thead>
+              <tbody>
+                <tr class="group-start"><td class="model">Transformer</td><td class="tl">A (+F)</td><td>57.0 <span class="se">(+8.0)</span></td></tr>
+                <tr><td></td><td class="tl">V (+F)</td><td>51.2 <span class="se">(+6.4)</span></td></tr>
+                <tr><td></td><td class="tl">A+V (+F)</td><td class="best">58.8 <span class="se">(+9.6)</span></td></tr>
+                <tr class="group-start"><td class="model">GRU</td><td class="tl">A (+F)</td><td>57.1 <span class="se">(+3.9)</span></td></tr>
+                <tr><td></td><td class="tl">V (+F)</td><td>51.2 <span class="se">(+4.2)</span></td></tr>
+                <tr><td></td><td class="tl">A+V (+F)</td><td>61.2 <span class="se">(+0.9)</span></td></tr>
+                <tr class="group-start"><td class="model">Mamba</td><td class="tl">A (+F)</td><td>55.6 <span class="se">(+2.6)</span></td></tr>
+                <tr><td></td><td class="tl">V (+F)</td><td>51.3 <span class="se">(+3.9)</span></td></tr>
+                <tr><td></td><td class="tl">A+V (+F)</td><td>57.6 <span class="se">(+2.7)</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="mini">
+          <h3>Fast enough to interrupt you</h3>
+          <div class="table-scroll">
+            <table>
+              <caption>Throughput on a single RTX 3090 (EasyCom). All three backbones run in real time; the GRU processes nearly 14k frames per second.</caption>
+              <thead><tr><th class="tl">Model</th><th>FPS</th><th>Params</th><th>GFLOPs</th></tr></thead>
+              <tbody>
+                <tr><td class="tl">Transformer</td><td>99.8</td><td>67.21M</td><td>129.48</td></tr>
+                <tr><td class="tl">RNN (GRU)</td><td class="best">13,939.5</td><td>34.6M</td><td>206.52</td></tr>
+                <tr><td class="tl">Mamba</td><td>12,009.3</td><td>83.1M</td><td>610.93</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </section>
-
-    <section id="pipeline">
-      <h2>Anticipate the wearer's next utterance</h2>
-      <p>At each timestep, EgoSpeak ingests RGB and audio features extracted at 5&thinsp;FPS, encodes a temporal window with a Transformer / GRU / Mamba backbone, and emits a per-frame distribution over three classes: <em>background</em>, <em>target speaker</em>, and <em>other speaker</em>. With anticipation length α = 10 timesteps, the model commits to speaking up to 2&thinsp;s before the wearer's actual onset, giving downstream LLMs the head start they need for natural turn-taking.</p>
-      <figure class="wide">
-        <img src="assets/pipeline.jpg" alt="EgoSpeak framework: per-frame video and audio features feed into a temporal encoder that predicts speak probabilities up to 2 seconds ahead.">
-        <figcaption><strong>Real-time pipeline.</strong> A streaming temporal encoder (long-term + short-term memory) reads continuous RGB+audio features and outputs anticipated speak probabilities for each future timestep up to 2&thinsp;s.</figcaption>
+      <figure class="fig">
+        <div class="plate"><img src="assets/backchannel.png" width="1400" height="932" alt="Plot of prediction score over time: the score rises before amber target-speaking regions but stays flat before a thin red backchannel region."></div>
+        <figcaption><span class="fig-tag">failure case</span><span class="fig-text">An honest miss: before a short backchannel ("mm-hm", red) the speak probability barely moves, unlike the clear ramps before full speaking turns (amber). Backchannels behave differently from turn-taking — a target for future work.</span></figcaption>
       </figure>
-    </section>
+    </div>
+  </section>
 
-    <section id="labeling">
-      <h2>Frame-level labels from transcript timestamps</h2>
-      <p>Per-frame speech labels are expensive to annotate by hand. We convert each EasyCom and Ego4D transcript into a one-hot timeline at 200&thinsp;ms resolution: <em>target</em> when the camera wearer is speaking, <em>other</em> for any other voice, <em>background</em> for silence.</p>
-      <figure class="medium">
-        <img src="assets/labeling.png" alt="Diagram showing how transcripts with start and end timestamps are converted into per-frame one-hot labels.">
-        <figcaption><strong>Transcript → per-frame labels.</strong> Spoken segments map to dense one-hot timelines used for both training and evaluation.</figcaption>
-      </figure>
-    </section>
-
-    <section id="distribution">
-      <h2>YT-Conversation: in-the-wild pretraining</h2>
-      <p>EasyCom and Ego4D are small for a model that has to learn turn-taking. We curate <strong>YT-Conversation</strong>, 414 YouTube videos spanning 41 hours of podcasts, interviews, and casual dialogues, then use Pyannote voice-activity detection to generate pseudo speech / no-speech labels at our 200&thinsp;ms resolution for large-scale pretraining.</p>
-      <figure class="wide">
-        <img src="assets/yt_samples.jpg" alt="3x3 grid of frames sampled from YT-Conversation showing different conversational scenarios.">
-        <figcaption><strong>Diverse conversational formats.</strong> Sample frames from YT-Conversation: podcasts, interviews, and informal multi-party dialogues.</figcaption>
-      </figure>
-      <figure class="medium">
-        <img src="assets/distribution.png" alt="Histogram of video durations in YT-Conversation, with most clips between 1 and 30 minutes and a tail past 900 seconds.">
-        <figcaption><strong>Long, untrimmed clips.</strong> Durations span 1 to 60&thinsp;min; the online formulation lets us train on full conversations rather than trimmed snippets.</figcaption>
-      </figure>
-    </section>
-
-    <section id="example">
-      <h2>What the model actually does, frame by frame</h2>
-      <figure class="wide">
-        <img src="assets/qualitative.jpg" alt="Per-frame prediction trace for an EasyCom clip comparing RGB-only, audio-only, and audio+visual variants.">
-        <figcaption><strong>Audio + visual cleanly separates target from other.</strong> RGB-only struggles to mark speaking vs. non-speaking; audio-only confuses the target speaker with other voices; the multimodal model resolves both.</figcaption>
-      </figure>
-    </section>
-
-    <section id="findings">
-      <h2>What we found</h2>
-      <div class="findings-box">
-        <p><strong>① Multimodal beats unimodal, mostly on EasyCom.</strong> Transformer A+V reaches 58.7% mAP on EasyCom vs. 56.9% audio-only and 51.0% visual-only. On Ego4D the gap narrows: audio alone already carries most of the signal.</p>
-        <p><strong>② Optical flow is a free win.</strong> Adding TV-L1 flow as a third modality consistently improves every backbone on EasyCom, suggesting motion cues complement static visual features for predicting speech onsets.</p>
-        <p><strong>③ Long context helps; long short-term context hurts.</strong> Growing the long-term window monotonically improves the Transformer, but enlarging the short-term window degrades it, evidence that recent frames carry the most predictive signal and extra recent context is mostly noise.</p>
-      </div>
-      <p class="takeaway">Predicting speech onsets frame-by-frame outperforms threshold-based silence detection by 25 to 40 AP points on both datasets, even with a 200&thinsp;ms decision step.</p>
-    </section>
-
-    <section id="bibtex">
+  <section id="bibtex">
+    <div class="wrap">
+      <p class="sec-eyebrow"><span class="swatch s-silence"></span>Citation</p>
       <h2>BibTeX</h2>
-      <pre><code>@inproceedings{kim2025egospeak,
-    title     = {EgoSpeak: Learning When to Speak for Egocentric Conversational Agents in the Wild},
-    author    = {Kim, Junhyeok and Kim, Min Soo and Chung, Jiwan and Cho, Jungbin and Kim, Jisoo and Kim, Sungwoong and Sim, Gyeongbo and Yu, Youngjae},
-    booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},
-    year      = {2025}
-}</code></pre>
-    </section>
+      <div class="bibtex-box">
+        <button class="copy-btn" type="button" data-copy-target="bibtex-text">Copy</button>
+        <pre id="bibtex-text">@inproceedings{kim-etal-2025-egospeak,
+  title     = {{EgoSpeak}: Learning When to Speak for Egocentric Conversational Agents in the Wild},
+  author    = {Kim, Junhyeok and Kim, Min Soo and Chung, Jiwan and Cho, Jungbin and
+               Kim, Jisoo and Kim, Sungwoong and Sim, Gyeongbo and Yu, Youngjae},
+  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},
+  publisher = {Association for Computational Linguistics},
+  year      = {2025}
+}</pre>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-      <p>Project page source on <a href="https://github.com/jun297/EgoSpeak">GitHub</a>. Template: <a href="https://github.com/jun297/GuideDog/tree/gh-pages">paper-project-page</a>.</p>
-    </footer>
+</main>
 
-  </main>
+<footer>
+  <div class="wrap">
+    <p class="foot-line">EgoSpeak · NAACL 2025 Findings · <a href="https://arxiv.org/abs/2502.14892">arXiv:2502.14892</a> · <a href="https://github.com/jun297/EgoSpeak">code</a> (Apache-2.0) · <a href="https://huggingface.co/datasets/kjunh/EgoSpeak">dataset</a></p>
+    <p class="foot-line">Contact: <a href="mailto:junhyeok@yonsei.ac.kr">junhyeok@yonsei.ac.kr</a></p>
+  </div>
+</footer>
+
+<script>
+// Stream rail: map the page's sections onto the hero's episode
+// (silence -> other speaking -> target speaking -> silence) and,
+// like an online model, saturate only the past.
+(function () {
+  var root = document.documentElement;
+  var zones = ['task', 'results', 'bibtex'];
+  function layout() {
+    var win = window.innerHeight;
+    var range = Math.max(root.scrollHeight - win, 1);
+    ['--z1', '--z2', '--z3'].forEach(function (prop, i) {
+      var el = document.getElementById(zones[i]);
+      if (!el) return;
+      var p = Math.min(Math.max((el.offsetTop - win * 0.45) / range, 0), 1);
+      root.style.setProperty(prop, (p * 100).toFixed(2) + '%');
+    });
+  }
+  function progress() {
+    var range = Math.max(root.scrollHeight - window.innerHeight, 1);
+    var p = Math.min(Math.max(window.scrollY / range, 0), 1);
+    root.style.setProperty('--scroll', (p * 100).toFixed(2) + '%');
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { progress(); ticking = false; });
+  }, { passive: true });
+  window.addEventListener('resize', function () { layout(); progress(); });
+  window.addEventListener('load', function () { layout(); progress(); });
+  layout();
+  progress();
+})();
+
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.dataset.copyTarget);
+    navigator.clipboard.writeText(el.textContent).then(function () {
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+    });
+  });
+});
+</script>
+
 </body>
 </html>
